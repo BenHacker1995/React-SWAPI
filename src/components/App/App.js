@@ -34,14 +34,12 @@ class App extends Component {
 
   // Another Way to GET (async/await)
   async getPlanets( nextUrl ) {
-    let nextUrl = url;
     while ( nextUrl != null ) {
       await axios.get( nextUrl )
         .then( ( response ) => {
           this.setState( { planetList:
             [ ...this.state.planetList, ...response.data.results ] } )
           nextUrl = response.data.next;
-          this.getPlanets( nextUrl )
         }).catch( ( error ) => {
           console.log( 'Error occurred: ', error );
         })
