@@ -16,10 +16,27 @@ class App extends Component {
     console.log( 'App component mounted' );
     this.getPlanets( 'https://swapi.co/api/planets/?format=json' );
   }
-  
-  getPlanets( nextUrl ) {
-    if ( nextUrl != null ) {
-      axios.get( nextUrl )
+
+  // One way to GET
+  // getPlanets( nextUrl ) {
+  //   if ( nextUrl != null ) {
+  //     axios.get( nextUrl )
+  //       .then( ( response ) => {
+  //         this.setState( { planetList:
+  //           [ ...this.state.planetList, ...response.data.results ] } )
+  //         nextUrl = response.data.next;
+  //         this.getPlanets( nextUrl )
+  //       }).catch( ( error ) => {
+  //         console.log( 'Error occurred: ', error );
+  //       })
+  //   }
+  // }
+
+  // Another Way to GET (async/await)
+  async getPlanets( nextUrl ) {
+    let nextUrl = url;
+    while ( nextUrl != null ) {
+      await axios.get( nextUrl )
         .then( ( response ) => {
           this.setState( { planetList:
             [ ...this.state.planetList, ...response.data.results ] } )
@@ -30,7 +47,6 @@ class App extends Component {
         })
     }
   }
-
 
   render() {
     return (
