@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Header from '../Header/Header';
+import PlanetList from '../PlanetList/PlanetList';
 
 class App extends Component {
 
@@ -50,10 +51,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-      <ul>
-      { this.state.planetList.map( planet =>
-        <li key={ planet.url }>{ planet.name }</li> ) }
-      </ul>
+        <PlanetList planetList={ this.state.planetList } />
       </div>
     );
   }
