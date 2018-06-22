@@ -1,31 +1,31 @@
 import React, { Component } from 'react';
-import Planet from '../Planet/Planet';
+import People from '../People/People';
 import axios from 'axios';
 
 
 
 
-class PlanetList extends Component {
+class PeopleList extends Component {
 
     constructor( props ) {
         super( props );
-        this.state = { planetList: [] }
+        this.state = { peopleList: [] }
       }
 
     componentDidMount() {
         console.log( 'App component mounted' );
-        this.getPlanets( 'https://swapi.co/api/planets/?format=json' );
+        this.getPeople( 'https://swapi.co/api/people/?format=json' );
       }
 
       // One way to GET
-  getPlanets( nextUrl ){
+  getPeople( nextUrl ){
     if ( nextUrl != null ) {
       axios.get( nextUrl )
         .then( ( response ) => {
-          this.setState( { planetList:
-            [ ...this.state.planetList, ...response.data.results ] } )
+          this.setState( { peopleList:
+            [ ...this.state.peopleList, ...response.data.results ] } )
           nextUrl = response.data.next;
-          this.getPlanets( nextUrl )
+          this.getPeople( nextUrl )
         }).catch( ( error ) => {
           console.log( 'Error occurred: ', error );
         });
@@ -37,11 +37,11 @@ class PlanetList extends Component {
         <div>
             <h2>All Planets in Star Wars Universe</h2>
             <ul>
-            { this.state.planetList.map( planet => <Planet planet={ planet } /> )}
+            { this.state.peopleList.map( people => <People people={ people } /> )}
             </ul>
         </div>
         )
     }
 }
 
-export default PlanetList;
+export default PeopleList;

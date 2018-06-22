@@ -5,7 +5,7 @@ class Header extends Component {
     render() {
         return (
             <header className="App-header">
-            <h1 className="App-title">SWAPI Planets</h1>
+            <h1 className="App-title">SWAPI Items</h1>
             </header>
         )
     }
